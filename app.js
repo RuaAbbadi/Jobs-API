@@ -2,6 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+app.use(express.json())
+
+
 //connectDB
 const connectDB = require("./db/connect");
 //routers
