@@ -1,7 +1,12 @@
 const User = require("../models/User");
+const { BadRequestError } = require("../errors/index");
 const { StatusCodes } = require("http-status-codes");
 
 const register = async (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    throw new BadRequestError("Please provide name, email, password");
+  }
   const user = await User.create({ ...req.body });
   res.status(StatusCodes.CREATED).json({ user });
 };
